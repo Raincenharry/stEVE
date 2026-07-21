@@ -338,11 +338,12 @@ class SofaBeamAdapter(Simulation):
             "DefaultContactManager", response="FrictionContactConstraint"
         )
         self.root.addObject(
-            "GenericConstraintSolver",
-            name="LCP",
+            "LCPConstraintSolver",
+            mu=friction,
             tolerance=1e-4,
-            maxIterations=2000,
-            computeConstraintForces=True,
+            maxIt=2000,
+            name="LCP",
+            build_lcp=False,
         )
 
     def _add_vessel_tree(self, mesh_path):
